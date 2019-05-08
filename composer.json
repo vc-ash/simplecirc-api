@@ -1,0 +1,32 @@
+{
+    "name": "vc-ash/simplecirc-api",
+    "type": "library",
+    "description": "A PHP library for working with the SimpleCirc API.",
+    "keywords": ["magazine","simplecirc", "SimpleCirc"],
+    "homepage": "https://github.com/vc-ash",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ash Bulcroft",
+            "email": "ashbulcroft@gmail.com",
+            "homepage": "https://github.com/vc-ash",
+            "role": "Lead"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "5"
+    },
+    "autoload": {
+        "psr-4": {
+            "SimpleCircApi\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SimpleCircApi\\Tests\\": "tests/"
+        }
+    }
+}
