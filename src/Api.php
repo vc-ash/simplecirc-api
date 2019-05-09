@@ -13,7 +13,7 @@ use SimpleCircApi\Exception\ApiError;
  *  #Create/update an address -> POST api/v1.2/subscribers/:account_id/addresses
  *  
  */
-class SimpleCircApi {
+class Api {
     protected $api_url;
     protected $api_user;
     protected $api_key;
@@ -119,6 +119,9 @@ class SimpleCircApi {
             ->sendRequest($this->getApiEndpoint(), $post);
         
         $subscriber->hydrate($response->subscriber);
+        $subscriber->unsetNewName()
+            ->unsetNewEmail()
+            ->unsetNewCompany();
         
         if(!empty($subscriber->getNewaddress())){
             $subscriber->unsetNewAddress();
