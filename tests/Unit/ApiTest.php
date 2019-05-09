@@ -53,7 +53,7 @@ class SimpleCircApiTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException VcAsh\Exception\ApiError
+     * @expectedException SimpleCircApi\Exception\ApiError
      * @expectedExceptionCode 0
      * @expectedExceptionCode Api Error: Unauthenticated
      */
@@ -353,7 +353,6 @@ class SimpleCircApiTest extends PHPUnit_Framework_TestCase
         
     }
     
-    
     /**
      * @dataProvider subscriberDataProvider
      */
@@ -383,8 +382,61 @@ class SimpleCircApiTest extends PHPUnit_Framework_TestCase
         $this->assertGreaterThan($initial_issues_remaining, $updatedSubscriber->getSubscriptions()[0]->getIssuesRemaining());
         $this->assertEquals($subscriber_info['subscriptions'][0]['issues_purchased'] + $initial_issues_remaining, $updatedSubscriber->getSubscriptions()[0]->getIssuesRemaining());
         
-       
     }
     
+    /**
+     * @dataProvider subscriberDataProvider
+     */
+    public function test_saveSubscriberTestNewSubscriberHydration_expectObjectOfResults($subscriber_info)
+    {
+        $new_subscriber = [
+            'new_name' => $subscriber_info['name'],
+            'new_email' => $subscriber_info['email'],
+            'new_company' => $subscriber_info['company'],
+            'new_address' => $subscriber_info['address'],
+            'new_subscriptions' => $subscriber_info['subscriptions']
+        ];
+        $subscriber = new Subscriber($new_subscriber);
+        
+        $result = $this->simpleCircApi->saveSubscriber($subscriber);
+        
+        $this->assertNotEmpty($result);
+        $this->assertInstanceOf(Subscriber::class, $result);
+        $this->assertEquals(strtoupper($subscriber_info['first_name']), $result->getFirstName());
+        $this->assertEquals(strtoupper($subscriber_info['last_name']), $result->getLastName());
+        $this->assertStringStartsWith('http', $result->getRenewalLink());
+        $this->assertInstanceOf(Address::class, $result->getAddress());
+        
+        $this->assertNotEmpty($result->getSubscriptions());
+        $this->assertTrue(is_array($result->getSubscriptions()));
+        $this->assertContainsOnlyInstancesOf(Subscription::class, $result->getSubscriptions());
+        
+        $this->assertNotEmpty($result->getSubscriptions()[0]->getSubscriptionId());
+        $this->assertEquals($subscriber_info['subscriptions'][0]['publication_id'], $result->getSubscriptions()[0]->getPublicationId());
+        $this->assertNotEmpty($result->getSubscriptions()[0]->getPublicationName());
+        $this->assertNotEmpty($result->getSubscriptions()[0]->getStatus());
+        $this->assertNotEmpty($result->getSubscriptions()[0]->getDigitalStatus());
+        $this->assertNotEmpty($result->getSubscriptions()[0]->getExpirationDate());
+        $this->assertNotEmpty($result->getSubscriptions()[0]->getIssuesRemaining());
+        $this->assertEmpty($result->getSubscriptions()[0]->getGiftgiver());
+    }
+    
+    /**
+     * @dataProvider subscriberDataProvider
+     */
+    public function test_saveSubscriberTestAliasSetNewSubscription_expectObjectOfResults($subscriber_info)
+    {
+        $subscriber = $this->simpleCircApi->getSubscriber('12375794');
+        $initial_issues_remaining = $subscriber->getSubscriptions()[0]->getIssuesRemaining();
+        $subscriber->setNewSubscription($subscriber_info['subscriptions'][0]);
+        
+        $updatedSubscriber = $this->simpleCircApi->saveSubscriber($subscriber);
+        
+        $this->assertNotEmpty($updatedSubscriber);
+        $this->assertInstanceOf(Subscriber::class, $updatedSubscriber);
+        $this->assertGreaterThan($initial_issues_remaining, $updatedSubscriber->getSubscriptions()[0]->getIssuesRemaining());
+        $this->assertEquals($subscriber_info['subscriptions'][0]['issues_purchased'] + $initial_issues_remaining, $updatedSubscriber->getSubscriptions()[0]->getIssuesRemaining());
+        
+    }
    
 }
