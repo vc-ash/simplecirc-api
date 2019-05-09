@@ -1,19 +1,19 @@
 <?php
 namespace Tests\Unit;
 
-use VcAsh\SimpleCircApi;
-use VcAsh\Exception\ApiError;
-use VcAsh\Subscriber;
-use VcAsh\Address;
-use VcAsh\Subscription;
-use VcAsh\NewSubscription;
+use SimpleCircApi\Api;
+use SimpleCircApi\Exception\ApiError;
+use SimpleCircApi\Subscriber;
+use SimpleCircApi\Address;
+use SimpleCircApi\Subscription;
+use SimpleCircApi\NewSubscription;
 use PHPUnit_Framework_TestCase;
 
 class SimpleCircApiTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
-        $this->simpleCircApi = new SimpleCircApi('Bearer', 'Gq0LcmyRFh2zMWByimoNJzluVd7fbX8PJMQh27vYnAOYCrNNJrMkvV9kT1Zs');
+        $this->simpleCircApi = new Api('Bearer', 'Gq0LcmyRFh2zMWByimoNJzluVd7fbX8PJMQh27vYnAOYCrNNJrMkvV9kT1Zs');
     }
     
     public function subscriberDataProvider()
