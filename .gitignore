@@ -1,5 +1,5 @@
 nppBackup
-test/coverage/*
-test/build
+tests/coverage/*
+tests/build
 composer.lock
 vendor
