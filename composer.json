@@ -32,9 +32,9 @@
             "SimpleCircApi\\": "src/"
         },
         "files": [
-            "vendor/vc-ash/helper-functions/functions/build_url.php",
-            "vendor/vc-ash/helper-functions/functions/concat_path.php",
-            "vendor/vc-ash/helper-functions/functions/pre_print.php"
+            "../helper-functions/functions/build_url.php",
+            "../helper-functions/functions/concat_path.php",
+            "../helper-functions/functions/pre_print.php"
         ]
     },
     "autoload-dev": {
