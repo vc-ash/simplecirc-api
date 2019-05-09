@@ -210,8 +210,24 @@ class Subscriber {
         return $this;
     }
     
+    /**
+     *  Alias of addNewSubscriptions used for auto hydration
+     */
+    public function setNewSubscriptions($subscriptions=array()){
+        $this->addNewSubscriptions($subscriptions);
+        return $this;
+    }
+    
     public function addNewSubscription($values=array()){
         $this->new_subscriptions[] = new NewSubscription($values);
+        return $this;
+    }
+    
+    /**
+     *  Alias of addNewSubscription used for auto hydration
+     */
+    public function setNewSubscription($values=array()){
+        $this->addNewSubscription($values);
         return $this;
     }
     
