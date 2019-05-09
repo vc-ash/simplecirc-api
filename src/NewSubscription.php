@@ -1,7 +1,7 @@
 <?php
-namespace VcAsh;
+namespace SimpleCircApi;
 
-use VcAsh\Traits\Hydrate;
+use SimpleCircApi\Traits\Hydrate;
 
 /**
  *  publication_id identifies the publication the subscription should be for, publication ids can be found on the API tab under account settings

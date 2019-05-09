@@ -1,5 +1,5 @@
 <?php
-namespace VcAsh\Traits;
+namespace SimpleCircApi\Traits;
 
 trait Hydrate {
     public function hydrate($data){

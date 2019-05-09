@@ -1,8 +1,8 @@
 <?php
 
-namespace VcAsh\Exception;
+namespace SimpleCircApi\Exception;
 
-use Throwable;
+use \Throwable;
 
 class ApiError extends \Exception
 {

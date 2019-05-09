@@ -1,7 +1,7 @@
 <?php
-namespace VcAsh;
+namespace SimpleCircApi;
 
-use VcAsh\Exception\ApiError;
+use SimpleCircApi\Exception\ApiError;
 
 /**
  *  #Create a subscriber -> POST api/v1.2/subscribers

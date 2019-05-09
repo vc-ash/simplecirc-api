@@ -1,7 +1,7 @@
 <?php
-namespace VcAsh;
+namespace SimpleCircApi;
 
-use VcAsh\Traits\Hydrate;
+use SimpleCircApi\Traits\Hydrate;
 
 /**
  *  name the subscriber's full name
@@ -10,7 +10,7 @@ use VcAsh\Traits\Hydrate;
  *  TODO: prevent saving data that is not new. Set a flag
  */
 
-class Subscriber extends BaseSubscriber {
+class Subscriber {
     
     use Hydrate;
     

@@ -1,7 +1,7 @@
 <?php
-namespace VcAsh;
+namespace SimpleCircApi;
 
-use VcAsh\Traits\Hydrate;
+use SimpleCircApi\Traits\Hydrate;
 
 /**
  *  address_1 the subscriber's mailing address line 1

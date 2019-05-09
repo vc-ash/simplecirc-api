@@ -1,7 +1,7 @@
 <?php
-namespace VcAsh;
+namespace SimpleCircApi;
 
-use VcAsh\Subscriber;
+use SimpleCircApi\Subscriber;
 
 /**
  *  name the subscriber's full name

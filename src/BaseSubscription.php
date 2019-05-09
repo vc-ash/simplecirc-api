@@ -1,7 +1,7 @@
 <?php
-namespace VcAsh;
+namespace SimpleCircApi;
 
-use VcAsh\Traits\Hydrate;
+use SimpleCircApi\Traits\Hydrate;
 
 /**
  *  subscription_id unique identifier for the object
