@@ -102,8 +102,37 @@ catch(Exception $e){
 ```
 
 ## Subscriber (object)
-Each Subscriber is an object so you can access their properites by using camelCase get methods `->getAccountId()` or `->getName()`.
-In this example we expand upon the getSubscriber() example. After fetching the subscriber we will echo the Subscriber's renewal link.
+Each `Subscriber` is an object, so you can access their properties by using camelCase get methods like so:
 ```php
-echo $subscriber->getRenewalLink();
+echo 'Account ID: ' . $subscriber->getAccountId();
+echo 'Name: ' . $subscriber->getName();
+echo 'Email: ' . $subscriber->getEmail();
+echo 'Company: ' . $subscriber->getCompany();
+echo 'Renewal Link: ' . $subscriber->getRenewalLink();
 ```
+
+## Address (object)
+Each `Subscriber` has an `Address` object attached to them. You can access their `Address` properties like so:
+```php
+echo 'Address 1: ' . $subscriber->getAddress()->getAddress1();
+echo 'Address 1: ' . $subscriber->getAddress()->getAddress2();
+echo 'City: ' . $subscriber->getAddress()->getCity();
+echo 'State: ' . $subscriber->getAddress()->getState();
+echo 'Zip: ' . $subscriber->getAddress()->getZipcode();
+echo 'Country: ' . $subscriber->getAddress()->getCountry();
+```
+
+
+## Subscription (object)
+Each Subscriber has an array of `Subscription` objects attached to them if they have subscriptions. You can access their `Subscription` properties like so:
+```php
+echo 'Subscription ID: ' . $subscriber->getSubscriptions()[0]->getSubscriptionId();
+echo 'Publication ID: ' . $subscriber->getSubscriptions()[0]->getPublicationId();
+echo 'Publication Name: ' . $subscriber->getSubscriptions()[0]->getPublicationName();
+echo 'Status: ' . $subscriber->getSubscriptions()[0]->getStatus();
+echo 'Digital Status: ' . $subscriber->getSubscriptions()[0]->getDigitalStatus();
+echo 'Expiration Date: ' . $subscriber->getSubscriptions()[0]->getExpirationDate();
+echo 'Copies: ' . $subscriber->getSubscriptions()[0]->getCopies();
+echo 'Issues Remaining: ' . $subscriber->getSubscriptions()[0]->getIssuesRemaining();
+```
+
