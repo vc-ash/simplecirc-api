@@ -62,7 +62,8 @@ $simpleCircApi = new Api($api_user, $api_key);
 
 Once you have that down, you are ready to use the API.
 
-## Get Subscribers
+## getSubscribers()
+### Getting a list of subscribers
 >**Note**: There are 2 optional params you can pass to the getSubscribers function. 1) `limit` and 2) `email`. In the example below I've limited it to return a max of 3 subscribers.
 ```php
 try{
@@ -74,7 +75,7 @@ catch(Exception $e){
 }
 ```
 
-## Get Subscribers by Email address
+### Get Subscribers by Email address
 >**Note**: There are optional params you can pass to the getSubscribers function. `limit` and `email` respectively. In the example below it's limited to return a max of 3 subscribers.
 ```php
 try{
@@ -87,11 +88,12 @@ catch(Exception $e){
 ```
 
 
-## Get a Subscriber by their account ID
+## getSubscriber()
+### Get a Subscriber by their account ID
 >**Note**: Only 1 param: account_id.
 ```php
 try{
-    $subscriber = $simpleCircApi->getSubscriber(30469946);
+    $subscriber = $simpleCircApi->getSubscriber(4742017184);
     pre_print($subscriber);
 }
 catch(Exception $e){
@@ -99,3 +101,9 @@ catch(Exception $e){
 }
 ```
 
+## Subscriber (object)
+Each Subscriber is an object so you can access their properites by using camelCase get methods `->getAccountId()` or `->getName()`.
+In this example we expand upon the getSubscriber() example. After fetching the subscriber we will echo the Subscriber's renewal link.
+```php
+echo $subscriber->getRenewalLink();
+```
