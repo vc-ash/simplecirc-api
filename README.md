@@ -14,7 +14,8 @@ This is not complete. Use with caution.
 ## Composer
 
 Pull this package in through Composer (development/latest version `dev-master`)
-
+>**Note**: Since this is still incomplete the composer package has yet to be published. So we pull in the repository instead of the package.
+>It also currently depends on some helper functions that aren't published composer packages yet, so be we include that repository in the dependency as well.
 ```json
 {
     "repositories": [
@@ -41,7 +42,7 @@ Pull this package in through Composer (development/latest version `dev-master`)
 
 
 ## Start with
->**Note**: Use the yoru credentials from SimpleCirc with the API.
+>**Note**: Use the your credentials from SimpleCirc with the API.
 
 ```php
 use SimpleCircApi\Api;
@@ -49,7 +50,8 @@ use SimpleCircApi\Subscriber;
 use SimpleCircApi\Address;
 use SimpleCircApi\NewSubscription;
 
-require_once ('./vendor/autoload.php');
+//include the composer autoload file if it's not already included in your project.
+require_once ('./vendor/autoload.php'); 
 
 $api_user = 'your_user_api_username';
 $api_key = 'your_user_api_key';
@@ -57,12 +59,25 @@ $api_key = 'your_user_api_key';
 $simpleCircApi = new Api($api_user, $api_key);
 ```
 
-Once you have that down you can get a list of subscribers
+Once you have that down, you are ready to use the API.
+
 ## Get Subscribers
->**Note**: There are optional params you can pass to the getSubscribers function. `limit` and `email` respectively. In the example below it's limited to return a max of 3 subscribers.
+>**Note**: There are 2 optional params you can pass to the getSubscribers function. 1) `limit` and 2) `email`. In the example below I've limited it to return a max of 3 subscribers.
 ```
 try{
     $subscribers = $simpleCircApi->getSubscribers(3);
+    pre_print($subscribers);
+}
+catch(Exception $e){
+    die($e->getMessage());
+}
+```
+
+## Get Subscribers by Email address
+>**Note**: There are optional params you can pass to the getSubscribers function. `limit` and `email` respectively. In the example below it's limited to return a max of 3 subscribers.
+```
+try{
+    $subscribers = $simpleCircApi->getSubscribers(5, 'orange.joe@example.com');
     pre_print($subscribers);
 }
 catch(Exception $e){
