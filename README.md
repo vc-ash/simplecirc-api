@@ -35,8 +35,9 @@ Pull this package in through Composer (development/latest version `dev-master`)
 }
 ```
 
-    composer update
-
+```
+composer update
+```
 
 # Usage
 
@@ -63,7 +64,7 @@ Once you have that down, you are ready to use the API.
 
 ## Get Subscribers
 >**Note**: There are 2 optional params you can pass to the getSubscribers function. 1) `limit` and 2) `email`. In the example below I've limited it to return a max of 3 subscribers.
-```
+```php
 try{
     $subscribers = $simpleCircApi->getSubscribers(3);
     pre_print($subscribers);
@@ -75,10 +76,23 @@ catch(Exception $e){
 
 ## Get Subscribers by Email address
 >**Note**: There are optional params you can pass to the getSubscribers function. `limit` and `email` respectively. In the example below it's limited to return a max of 3 subscribers.
-```
+```php
 try{
     $subscribers = $simpleCircApi->getSubscribers(5, 'orange.joe@example.com');
     pre_print($subscribers);
+}
+catch(Exception $e){
+    die($e->getMessage());
+}
+```
+
+
+## Get a Subscriber by their account ID
+>**Note**: Only 1 param: account_id.
+```php
+try{
+    $subscriber = $simpleCircApi->getSubscriber(30469946);
+    pre_print($subscriber);
 }
 catch(Exception $e){
     die($e->getMessage());
